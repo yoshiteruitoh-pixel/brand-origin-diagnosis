@@ -363,6 +363,13 @@ def reset_diagnosis():
     st.session_state.quiz_completed = False
     st.session_state.current_question = 0
     st.session_state.answers = []
+        st.session_state.step1_data = {
+        "time": "",
+        "money": "",
+        "research": "",
+        "favorite": "",
+        "reason": "",
+    }
 
 
 def start_quiz():
@@ -621,8 +628,16 @@ if not st.session_state.quiz_started and not st.session_state.quiz_completed:
         if missing_items:
             st.warning("名前・学年・学籍番号と、STEP1の1〜5をすべて入力してください。")
         else:
-            start_quiz()
-            st.rerun()
+            st.session_state.step1_data = {
+   　　　　　　　　 "time": st.session_state.time_interest,
+   　　　　　　　　 "money": st.session_state.money_interest,
+  　　　　　　　　  "research": st.session_state.research_interest,
+   　　　　　　　　 "favorite": st.session_state.favorite_interest,
+   　　　　　　　　 "reason": st.session_state.reason,
+}
+
+start_quiz()
+st.rerun()
 
 elif st.session_state.quiz_started:
     question_index = st.session_state.current_question
@@ -661,12 +676,13 @@ elif st.session_state.quiz_completed:
         "student_id": st.session_state.get("student_id", ""),
     }
     interests = {
-        "time": st.session_state.get("time_interest", ""),
-        "money": st.session_state.get("money_interest", ""),
-        "research": st.session_state.get("research_interest", ""),
+        "time": st.session_state.step1_data.get("time", ""),
+        "money": st.session_state.step1_data.get("money", ""),
+        "research": st.session_state.step1_data.get("research", ""),
+}
     }
-    favorite = st.session_state.get("favorite_interest", "")
-    reason = st.session_state.get("reason", "")
+    favorite = st.session_state.step1_data.get("favorite", "")
+    reason = st.session_state.step1_data.get("reason", "")
     answers = st.session_state.answers
     scores = score_answers(answers)
     type_result = create_type_result(scores)
