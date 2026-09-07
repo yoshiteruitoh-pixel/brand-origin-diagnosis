@@ -628,16 +628,16 @@ if not st.session_state.quiz_started and not st.session_state.quiz_completed:
         if missing_items:
             st.warning("名前・学年・学籍番号と、STEP1の1〜5をすべて入力してください。")
         else:
-            st.session_state.step1_data = {
-   　　　　　　　　 "time": st.session_state.time_interest,
-   　　　　　　　　 "money": st.session_state.money_interest,
-  　　　　　　　　  "research": st.session_state.research_interest,
-   　　　　　　　　 "favorite": st.session_state.favorite_interest,
-   　　　　　　　　 "reason": st.session_state.reason,
-}
+         st.session_state.step1_data = {
+            "time": st.session_state.time_interest,
+            "money": st.session_state.money_interest,
+            "research": st.session_state.research_interest,
+            "favorite": st.session_state.favorite_interest,
+            "reason": st.session_state.reason,
+        }
 
-start_quiz()
-st.rerun()
+        start_quiz()
+        st.rerun()
 
 elif st.session_state.quiz_started:
     question_index = st.session_state.current_question
