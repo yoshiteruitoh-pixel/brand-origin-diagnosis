@@ -363,7 +363,7 @@ def reset_diagnosis():
     st.session_state.quiz_completed = False
     st.session_state.current_question = 0
     st.session_state.answers = []
-        st.session_state.step1_data = {
+    st.session_state.step1_data = {
         "time": "",
         "money": "",
         "research": "",
